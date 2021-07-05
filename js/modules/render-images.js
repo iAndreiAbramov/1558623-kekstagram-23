@@ -2,6 +2,8 @@ import { getData } from '../services/get-data.js';
 import { GET_PHOTO_URL } from '../settings/settings.js';
 
 export const renderImages = () => {
+  const imagesContainer = document.querySelector('.pictures');
+
   const showErrorMessage = (err) => {
     const container = document.querySelector('main');
     const errorMessage = document.createElement('div');
@@ -27,6 +29,28 @@ export const renderImages = () => {
     container.appendChild(errorMessage);
   };
 
+  const getHTMLfromData = (dataElement) => {
+    const miniTemplate = document.querySelector('#picture').content.querySelector('.picture');
+    const miniHTML = miniTemplate.cloneNode(true);
+    const miniImage = miniHTML.querySelector('img.picture__img');
+    const miniComments = miniHTML.querySelector('.picture__comments');
+    const miniLikes = miniHTML.querySelector('.picture__likes');
+
+    miniImage.setAttribute('src', dataElement.url);
+    miniComments.textContent = `${dataElement.comments.length}`;
+    miniLikes.textContent = `${dataElement.likes}`;
+
+    return miniHTML;
+  };
+
   const photosData = getData(GET_PHOTO_URL, showErrorMessage);
-  photosData.then((data) => console.log(data));
+  photosData
+    // .then((data) => console.log(data))
+    .then((dataArray) => {
+      dataArray.forEach((element) => {
+        // console.log(element);
+        const miniElement = getHTMLfromData(element);
+        imagesContainer.appendChild(miniElement);
+      });
+    });
 };
