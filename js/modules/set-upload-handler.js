@@ -1,4 +1,5 @@
 import { isEscEvent } from '../services/utils.js';
+import { setInitialEffects, setEffectsChangeHandlers } from './image-effects.js';
 
 export const setUploadHandler = () => {
   const input = document.querySelector('#upload-file');
@@ -13,8 +14,8 @@ export const setUploadHandler = () => {
     document.removeEventListener('keydown', closeFormByEscape);
   };
 
-  const closeFormByEscape = () => {
-    if (isEscEvent) {
+  const closeFormByEscape = (evt) => {
+    if (isEscEvent(evt)) {
       form.classList.add('hidden');
       document.body.classList.remove('modal-open');
       closeButton.removeEventListener('click', closeFormByClick);
@@ -23,6 +24,8 @@ export const setUploadHandler = () => {
   };
 
   input.addEventListener('change', () => {
+    setInitialEffects();
+    setEffectsChangeHandlers();
     form.classList.remove('hidden');
     document.body.classList.add('modal-open');
     closeButton.addEventListener('click', closeFormByClick);
