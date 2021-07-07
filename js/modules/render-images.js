@@ -109,8 +109,8 @@ const showFullScreenPhoto = (evt, id) => {
     document.removeEventListener('keydown', hideOverlayOnEscape);
   };
 
-  const hideOverlayOnEscape = (evt) => {
-    if (isEscEvent(evt)) {
+  const hideOverlayOnEscape = (keyDownEvt) => {
+    if (isEscEvent(keyDownEvt)) {
       overlay.classList.add('hidden');
       document.body.classList.remove('modal-open');
       overlayCloseBtn.removeEventListener('click', hideOverlayOnClick);
