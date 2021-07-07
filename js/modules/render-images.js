@@ -46,7 +46,6 @@ const getHTMLfromData = (dataElement) => {
   miniImage.setAttribute('src', dataElement.url);
   miniComments.textContent = `${dataElement.comments.length}`;
   miniLikes.textContent = `${dataElement.likes}`;
-  // miniHTML.setAttribute('data-id', dataElement.id);
 
   return miniHTML;
 };
@@ -82,7 +81,6 @@ const renderComments = (id, commentsToRender) => {
 
 const showFullScreenPhoto = (evt, id) => {
   evt.preventDefault();
-  // const id = evt.target.closest('a').getAttribute('data-id');
   let numberOfComments = COMMENTS_TO_SHOW;
 
   overlayTitle.textContent = `${cachedData[id].description}`;
@@ -95,8 +93,6 @@ const showFullScreenPhoto = (evt, id) => {
     numberOfComments += 5;
     renderComments(id, numberOfComments);
   });
-
-  // console.log(cachedData);
 
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
