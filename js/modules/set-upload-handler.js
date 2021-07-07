@@ -1,5 +1,5 @@
 import { isEscEvent } from '../services/utils.js';
-import { setInitialEffects, setEffectsChangeHandlers } from './image-effects.js';
+import { setInitialEffects, setEffectsChangeHandlers, removeEffectsChangeHandlers } from './image-effects.js';
 
 export const setUploadHandler = () => {
   const input = document.querySelector('#upload-file');
@@ -12,6 +12,7 @@ export const setUploadHandler = () => {
     closeButton.removeEventListener('click', closeFormByClick);
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('keydown', closeFormByEscape);
+    removeEffectsChangeHandlers();
   };
 
   const closeFormByEscape = (evt) => {
@@ -20,6 +21,7 @@ export const setUploadHandler = () => {
       document.body.classList.remove('modal-open');
       closeButton.removeEventListener('click', closeFormByClick);
       document.removeEventListener('keydown', closeFormByEscape);
+      removeEffectsChangeHandlers();
     }
   };
 

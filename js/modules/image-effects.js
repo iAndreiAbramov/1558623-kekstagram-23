@@ -7,7 +7,11 @@ const plusBtn = imgOverlay.querySelector('.scale__control--bigger');
 const scaleValueField = imgOverlay.querySelector('.scale__control--value');
 let currentScale = DEFAULT_SCALE;
 
-const renderScale = (step) => {
+const renderScale = (evt) => {
+  let step = SCALE_CHANGE_STEP;
+  if (evt.target === minusBtn) {
+    step = -SCALE_CHANGE_STEP;
+  }
   currentScale += step;
   if (currentScale < MIN_SCALE) {
     currentScale = MIN_SCALE;
@@ -21,8 +25,13 @@ const renderScale = (step) => {
 };
 
 export const setEffectsChangeHandlers = () => {
-  minusBtn.addEventListener('click', () => renderScale(-SCALE_CHANGE_STEP));
-  plusBtn.addEventListener('click', () => renderScale(SCALE_CHANGE_STEP));
+  minusBtn.addEventListener('click', renderScale);
+  plusBtn.addEventListener('click', renderScale);
+};
+
+export const removeEffectsChangeHandlers = () => {
+  minusBtn.removeEventListener('click', renderScale);
+  plusBtn.removeEventListener('click', renderScale);
 };
 
 export const setInitialEffects = () => {
