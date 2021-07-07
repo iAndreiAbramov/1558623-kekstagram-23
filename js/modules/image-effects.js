@@ -6,6 +6,15 @@ const minusBtn = imgOverlay.querySelector('.scale__control--smaller');
 const plusBtn = imgOverlay.querySelector('.scale__control--bigger');
 const scaleValueField = imgOverlay.querySelector('.scale__control--value');
 const effectsListElement = imgOverlay.querySelector('.effects__list');
+
+const effectClassNames = {
+  'chrome': 'effects__preview--chrome',
+  'sepia': 'effects__preview--sepia',
+  'marvin': 'effects__preview--marvin',
+  'phobos': 'effects__preview--phobos',
+  'heat': 'effects__preview--heat',
+};
+
 let currentScale = DEFAULT_SCALE;
 
 const renderScale = (evt) => {
@@ -25,24 +34,27 @@ const renderScale = (evt) => {
   scaleValueField.value = `${currentScale * PERCENT_MULTIPLIER}%`;
 };
 
-const renderEffect = (evt) => {
+const changeEffect = (evt) => {
   let effectName;
   if (evt.target.value) {
     effectName = evt.target.value;
   }
-  console.log(effectName);
+  if (effectName) {
+    img.classList = [];
+    img.classList.add(effectClassNames[effectName]);
+  }
 };
 
 export const setEffectsChangeHandlers = () => {
   minusBtn.addEventListener('click', renderScale);
   plusBtn.addEventListener('click', renderScale);
-  effectsListElement.addEventListener('click', renderEffect);
+  effectsListElement.addEventListener('click', changeEffect);
 };
 
 export const removeEffectsChangeHandlers = () => {
   minusBtn.removeEventListener('click', renderScale);
   plusBtn.removeEventListener('click', renderScale);
-  effectsListElement.removeEventListener('click', renderEffect);
+  effectsListElement.removeEventListener('click', changeEffect);
 };
 
 export const setInitialEffects = () => {
