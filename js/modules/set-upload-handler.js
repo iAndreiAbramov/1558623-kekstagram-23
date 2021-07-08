@@ -1,27 +1,30 @@
 import { isEscEvent } from '../services/utils.js';
 import { setInitialEffects, setEffectsChangeHandlers, removeEffectsChangeHandlers } from './image-effects.js';
+import { removeSlider } from './no-ui-slider.js';
 
 export const setUploadHandler = () => {
   const input = document.querySelector('#upload-file');
   const form = document.querySelector('.img-upload__overlay');
   const closeButton = form.querySelector('#upload-cancel');
 
-  const closeFormByClick = () => {
+  const closeForm = () => {
     form.classList.add('hidden');
     document.body.classList.remove('modal-open');
+    // eslint-disable-next-line no-use-before-define
     closeButton.removeEventListener('click', closeFormByClick);
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('keydown', closeFormByEscape);
     removeEffectsChangeHandlers();
+    removeSlider();
+  };
+
+  const closeFormByClick = () => {
+    closeForm();
   };
 
   const closeFormByEscape = (evt) => {
     if (isEscEvent(evt)) {
-      form.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-      closeButton.removeEventListener('click', closeFormByClick);
-      document.removeEventListener('keydown', closeFormByEscape);
-      removeEffectsChangeHandlers();
+      closeForm();
     }
   };
 
