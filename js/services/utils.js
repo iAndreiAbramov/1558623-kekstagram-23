@@ -18,7 +18,7 @@ export const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export const uniqueTag = (item, array) => {
+export const isUniqueTag = (item, array) => {
   array = array.map((element) => element.toLowerCase());
   return array.indexOf(item) === array.lastIndexOf(item);
 };

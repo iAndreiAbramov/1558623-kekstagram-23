@@ -1,7 +1,8 @@
-import { uniqueTag } from '../services/utils.js';
+import { isUniqueTag } from '../services/utils.js';
 import { closeFormByEscape } from './set-upload-handler.js';
 
-const form = document.querySelector('#upload-select-image');
+export const form = document.querySelector('#upload-select-image');
+export const submitBtn = form.querySelector('#upload-submit');
 const tagInput = form.querySelector('input[name="hashtags"]');
 const commentField = form.querySelector('textarea[name="description"]');
 
@@ -18,6 +19,8 @@ const checkTags = (evt) => {
   const tagsArray = value.split(' ');
   const invalidities = [];
 
+  tagInput.style.border = '';
+
   if (tagsArray.some((item) => !item.startsWith('#'))) {
     invalidities.push('Каждый тэг должен начинаться с символа #');
   } else if (tagsArray.some((item) => (/#{2,}/g).test(item))) {
@@ -31,7 +34,7 @@ const checkTags = (evt) => {
   if (tagsArray.some((item) => item.length > 20)) {
     invalidities.push('Максимальная длина одного хэш-тега 20 символов, включая #');
   }
-  if (tagsArray.some((item, i, array) => !uniqueTag(item, array))) {
+  if (tagsArray.some((item, i, array) => !isUniqueTag(item, array))) {
     invalidities.push('Один и тот же хэш-тег не может быть использован дважды');
   }
   if (tagsArray.length > 5) {
@@ -40,9 +43,12 @@ const checkTags = (evt) => {
 
   if (invalidities.length === 0 || evt.target.value.length === 0) {
     evt.target.setCustomValidity('');
+    submitBtn.disabled = false;
   } else {
     const report = invalidities.join('\n');
     evt.target.setCustomValidity(report);
+    submitBtn.disabled = true;
+    tagInput.style.border = '4px solid #fb4c4a';
   }
   evt.target.reportValidity();
 };
