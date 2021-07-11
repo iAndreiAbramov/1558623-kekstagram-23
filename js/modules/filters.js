@@ -6,7 +6,7 @@ const filtersSection = document.querySelector('.img-filters');
 const filtersForm = filtersSection.querySelector('.img-filters__form');
 const buttons = filtersForm.querySelectorAll('button.img-filters__button');
 
-export const showFilters = () => {
+const showFilters = () => {
   filtersSection.classList.remove('img-filters--inactive');
 };
 
@@ -44,7 +44,7 @@ const clearPictures = (evt) => {
   }
 };
 
-export const setFiltersHandlers = () => {
+const setFiltersHandlers = () => {
   filtersForm.addEventListener('click', (evt) => {
     markActiveFilter(evt);
     getFilteredData(evt);
@@ -52,3 +52,5 @@ export const setFiltersHandlers = () => {
     renderImages(getFilteredData(evt));
   });
 };
+
+export { showFilters, setFiltersHandlers };
