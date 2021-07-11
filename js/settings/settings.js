@@ -1,6 +1,9 @@
 // Common settings
 export const PERCENT_MULTIPLIER = 100;
 
+// Filter settings
+export const NUMBER_OF_RANDOM_IMAGES = 10;
+
 // URL settings
 export const GET_PHOTO_URL = 'https://23.javascript.pages.academy/kekstagram/data';
 export const POST_PHOTO_URL = 'https://23.javascript.pages.academy/kekstagram';

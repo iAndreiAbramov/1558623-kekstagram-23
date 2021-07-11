@@ -38,7 +38,9 @@ export const getRandomArrayItems = (array, number) => {
   const randomItems = [];
   for (let i = 0; i < number; i++) {
     const maxIndex = array.length - 1;
-    randomItems.push(array.splice(getRandomPositiveInteger(0, maxIndex), 1));
+    randomItems.push(array.splice(getRandomPositiveInteger(0, maxIndex), 1)[0]);
   }
   return randomItems;
 };
+
+export const sortArrayByComments = (array) => array.sort((a, b) => b.comments.length - a.comments.length);
