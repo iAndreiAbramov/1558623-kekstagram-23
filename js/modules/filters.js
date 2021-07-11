@@ -50,9 +50,9 @@ const setFiltersHandlers = () => {
     markActiveFilter(evt);
     getFilteredData(evt);
     clearPictures(evt);
-    renderImages(filteredData);
+    // renderImages(filteredData);
     // debugger;
-    // debounce(() => renderImages(filteredData), 500);
+    debounce(() => renderImages(filteredData), 500);
     // setTimeout(() => renderImages(filteredData), 500);
   });
 };
