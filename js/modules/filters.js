@@ -1,4 +1,4 @@
-import { getRandomArrayItems, sortArrayByComments } from '../services/utils.js';
+import { debounce, getRandomArrayItems, sortArrayByComments } from '../services/utils.js';
 import { NUMBER_OF_RANDOM_IMAGES } from '../settings/settings.js';
 import { cachedData, renderImages } from './render-images.js';
 
@@ -21,7 +21,7 @@ const markActiveFilter = (evt) => {
 
 const getFilteredData = (evt) => {
   const dataArray = [...cachedData];
-  let filter = 'filter-default';
+  let filter;
   let filteredImages = dataArray;
 
   if (evt.target.tagName === 'BUTTON') {
@@ -46,10 +46,15 @@ const clearPictures = (evt) => {
 
 const setFiltersHandlers = () => {
   filtersForm.addEventListener('click', (evt) => {
+    const filteredData = getFilteredData(evt);
     markActiveFilter(evt);
     getFilteredData(evt);
     clearPictures(evt);
-    renderImages(getFilteredData(evt));
+    renderImages(filteredData);
+    // debugger;
+    debounce(() =>  renderImages(filteredData), 500);
+
+    // setTimeout(() => renderImages(filteredData), 500);
   });
 };
 

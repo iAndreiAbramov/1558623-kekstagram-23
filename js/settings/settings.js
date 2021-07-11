@@ -17,6 +17,9 @@ export const MIN_SCALE = 0.25;
 export const DEFAULT_SCALE = 1;
 export const SCALE_CHANGE_STEP = 0.25;
 
+// Image type settings
+export const IMAGE_TYPES = ['.jpg', '.jpeg', '.gif', '.png'];
+
 // Slider settings
 export const SLIDER_EFFECTS = {
   chrome: {
