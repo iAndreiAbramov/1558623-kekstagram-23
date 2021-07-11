@@ -11,6 +11,7 @@ const overlayTitle = overlay.querySelector('.social__caption');
 const overlayImage = overlay.querySelector('.big-picture__img img');
 const overlayLikesCount = overlay.querySelector('.likes-count');
 const moreCommentsBtn = overlay.querySelector('button.social__comments-loader');
+const miniTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const showErrorMessage = (err) => {
   const container = document.querySelector('main');
@@ -38,7 +39,6 @@ const showErrorMessage = (err) => {
 };
 
 const getHTMLfromData = (dataElement) => {
-  const miniTemplate = document.querySelector('#picture').content.querySelector('.picture');
   const miniHTML = miniTemplate.cloneNode(true);
   const miniImage = miniHTML.querySelector('img.picture__img');
   const miniComments = miniHTML.querySelector('.picture__comments');
@@ -127,7 +127,7 @@ const renderImages = (array) => {
   array.forEach((element) => {
     const miniElement = getHTMLfromData(element);
     imagesContainer.appendChild(miniElement);
-    miniElement.addEventListener('click', (evt) => showFullScreenPhoto(evt, cachedData, element.id));
+    miniElement.addEventListener('click', (evt) => showFullScreenPhoto(evt, array, element.id));
   });
 };
 

@@ -52,8 +52,7 @@ const setFiltersHandlers = () => {
     clearPictures(evt);
     renderImages(filteredData);
     // debugger;
-    debounce(() =>  renderImages(filteredData), 500);
-
+    // debounce(() => renderImages(filteredData), 500);
     // setTimeout(() => renderImages(filteredData), 500);
   });
 };
