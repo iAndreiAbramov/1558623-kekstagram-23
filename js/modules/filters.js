@@ -1,4 +1,4 @@
-import { debounce, getRandomArrayItems, sortArrayByComments } from '../services/utils.js';
+import { getRandomArrayItems, sortArrayByComments } from '../services/utils.js';
 import { NUMBER_OF_RANDOM_IMAGES } from '../settings/settings.js';
 import { cachedData, renderImages } from './render-images.js';
 
@@ -50,10 +50,7 @@ const setFiltersHandlers = () => {
     markActiveFilter(evt);
     getFilteredData(evt);
     clearPictures(evt);
-    // renderImages(filteredData);
-    // debugger;
-    debounce(() => renderImages(filteredData), 500);
-    // setTimeout(() => renderImages(filteredData), 500);
+    renderImages(filteredData);
   });
 };
 
