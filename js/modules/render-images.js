@@ -1,6 +1,7 @@
 import { getData } from '../services/get-data.js';
 import { isEscEvent } from '../services/utils.js';
 import { GET_PHOTO_URL, COMMENTS_TO_SHOW } from '../settings/settings.js';
+import { setFiltersHandlers, showFilters } from './filters.js';
 
 const cachedData = {};
 const commentTemplate = document.querySelector('li.social__comment');
@@ -130,7 +131,9 @@ const renderImages = () => {
         miniElement.addEventListener('click', (evt) => showFullScreenPhoto(evt, element.id));
       });
     })
+    .then(() => showFilters())
+    .then(() => setFiltersHandlers(cachedData))
     .catch((err) => err);
 };
 
-export { renderImages };
+export { renderImages, cachedData };
