@@ -32,7 +32,9 @@ const renderScale = (evt) => {
 const renderImage = () => {
   const effectName = SLIDER_EFFECTS[currentEffect];
   const value = valueField.value;
-  img.style.filter = `${effectName.filter}(${value}${effectName.unit})`;
+  if (effectName.filter) {
+    img.style.filter = `${effectName.filter}(${value}${effectName.unit})`;
+  }
 };
 
 const changeEffect = (evt) => {
