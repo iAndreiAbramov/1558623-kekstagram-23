@@ -10,6 +10,7 @@ export const POST_PHOTO_URL = 'https://23.javascript.pages.academy/kekstagram';
 
 // Comments settings
 export const COMMENTS_TO_SHOW = 5;
+export const COMMENTS_ADDING_STEP = 5;
 
 // Scale settings
 export const MAX_SCALE = 1;

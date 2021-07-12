@@ -1,6 +1,6 @@
 import { getData } from '../services/get-data.js';
 import { isEscEvent } from '../services/utils.js';
-import { GET_PHOTO_URL, COMMENTS_TO_SHOW } from '../settings/settings.js';
+import { GET_PHOTO_URL, COMMENTS_TO_SHOW, COMMENTS_ADDING_STEP } from '../settings/settings.js';
 import { setFiltersHandlers, showFilters } from './filters.js';
 
 const cachedData = [];
@@ -94,7 +94,7 @@ const showFullScreenPhoto = (evt, array, id) => {
   renderComments(cachedData, id, numberOfComments);
 
   moreCommentsBtn.addEventListener('click', () => {
-    numberOfComments += 5;
+    numberOfComments += COMMENTS_ADDING_STEP;
     renderComments(cachedData, id, numberOfComments);
   });
 
